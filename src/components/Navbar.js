@@ -1,18 +1,23 @@
 import React, { Component } from "react";
+// import "/Navbar.css"
 import { Link } from "react-router-dom";
+import { withAuth } from "../lib/AuthProvider";
 
 class Navbar extends Component {
   render() {
-    // const { user, logout, isLoggedin } = this.props;
+    const { user, logout, isLoggedin } = this.props;
     return (
+      <div>
       <nav className='navbar'>
         <Link to={"/"} id='home-btn'>
           <h4>Home</h4>
         </Link>
-        {false ? (
+        {isLoggedin ? (
           <>
-            <p className='navbar-user'>username:</p>
-            <button className='navbar-button'>Logout</button>
+            <p className='navbar-user'>username: {user.username}</p>
+            <button className='navbar-button' onClick={logout}>
+              Logout
+            </button>
           </>
         ) : (
           <>
@@ -26,8 +31,80 @@ class Navbar extends Component {
           </>
         )}
       </nav>
+
+      <nav className="xnavbar-bottom">
+          <div className="" id="nav">
+              <ul className="xnavbar-nav">
+                  <li className="xnav-item">
+                    <div className="xnavbar-texticon">
+                      <Link className="xnavbar-icontitle" to={"/"}>
+                        <img className="xnavbar-icon" alt="icon" src="/icons/icon-home.png"/>
+                        <p className="xnavbar-title" >Home</p>
+                      </Link>
+                    </div>
+                  </li>
+
+                  <li className="xnav-item">
+                    <div className="xnavbar-texticon">
+                      <Link className="xnavbar-icontitle" to={"SearchBar"}>  {/* corregir */}
+                        <img className="xnavbar-icon" alt="icon" src="/icons/icon-search.png"/>
+                        <p className="xnavbar-title" >Search</p>
+                      </Link>
+                    </div>
+                  </li>
+
+                  <li className="xnav-item">
+                    <div className="xnavbar-texticon">
+                      <Link className="xnavbar-icontitle" to={"/checkout"}>
+                        <img className="xnavbar-icon" alt="icon" src="/icons/icon-car.png"/>
+                        <p className="xnavbar-title" >Cheackout</p>
+                      </Link>
+                    </div>
+                  </li>
+
+                  <li className="xnav-item">
+                    <div className="xnavbar-texticon">
+                      <Link className="xnavbar-icontitle" to={"/user/piccreate"}>
+                        <img className="xnavbar-icon" alt="icon" src="/icons/icon-addpic.png"/>
+                        <p className="xnavbar-title" >Add Print</p>
+                      </Link>
+                    </div>
+                  </li>
+            
+                  {isLoggedin ? (
+                    <>
+                    <li className="xnav-item">
+                      <div className="xnavbar-texticon">
+                        <Link className="xnavbar-icontitle" to="/profile">
+                          <img className="xnavbar-icon" alt="icon" src="/icons/icon-user.png"/>
+                          <p className="xnavbar-title" >User</p>
+                        </Link>
+                      </div>
+                    </li>
+                    </>
+                  ) : (
+                    <>
+                    <li className="xnav-item">
+                      <div className="xnavbar-texticon">
+                        <Link className="xnavbar-icontitle" to="/login">
+                          <img className="xnavbar-icon" alt="icon" src="/icons/icon-user.png"/>
+                          <p className="xnavbar-title" >User</p>
+                        </Link>
+                      </div>
+                    </li>
+                    </>
+                  )}
+
+
+
+
+              </ul>
+          </div>
+      </nav>
+
+      </div>
     );
   }
 }
 
-export default Navbar;
+export default withAuth(Navbar);
