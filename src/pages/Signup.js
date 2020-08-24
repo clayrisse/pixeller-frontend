@@ -39,10 +39,9 @@ class Signup extends Component {
 
     return (
       <div id="formedit" className="bigform form">
-              
     
         <header className="">
-            <img id="logoform" src="images/logo-ironclub.png" />
+            <img id="logoform" alt="" src="./../../images/logo-pixeller.png" />
             <h1 className="titleform">Sign Up</h1>
         </header>
 
@@ -56,23 +55,6 @@ class Signup extends Component {
             
             <div className="blockform">
 
-                {/* <div className="lineform">
-                    <div className="labelform">                
-                        <label for=''>Profile picture</label>
-                    </div>
-                    <div className="inputform">             
-                        <input type="file" name="profilepic" id="profilepic-input"/>
-                    </div>
-                </div> */}
-
-                {/* <div className="lineform">
-                    <div className="labelform">            
-                        <label for="name-input"> Name </label>
-                    </div>
-                    <div className="inputform">             
-                        <input value={username} onChange={this.handleChange} type="text" name="name" id="name-input" placeholder="e.g., Diana Prince" required />
-                    </div>
-                </div> */}
 
                 <div className="lineform">
                     <div className="labelform">            
@@ -83,7 +65,6 @@ class Signup extends Component {
                     </div>
                 </div>
                 
-
                 <div className="lineform">
                     <div className="labelform">            
                         <label for="email-input"> Email </label>
@@ -99,6 +80,19 @@ class Signup extends Component {
                     </div>
                     <div className="inputform">             
                         <input value={password} onChange={this.handleChange} type="password" name="password" id="password-input" placeholder="e.g., ••••••••••••" required />
+                    </div>
+                </div>
+
+
+                <div className="lineform">
+                    <div className="labelform">   
+                        <label for="password-input"> Want to be a selling pgotographer?</label>
+                    </div>
+                    <div className="inputform">             
+                        <select id="seller-input" name="seller" onChange={this.handleChange}>
+                            <option value="true">Yes</option>
+                            <option value="false" selected>NO</option>
+                        </select>                    
                     </div>
                 </div>
 

@@ -8,7 +8,7 @@ class Navbar extends Component {
     const { user, logout, isLoggedin } = this.props;
     return (
       <div>
-      <nav className='navbar'>
+      {/* <nav className='navbar'>
         <Link to={"/"} id='home-btn'>
           <h4>Home</h4>
         </Link>
@@ -30,7 +30,7 @@ class Navbar extends Component {
             </Link>
           </>
         )}
-      </nav>
+      </nav> */}
 
       <nav className="xnavbar-bottom">
           <div className="" id="nav">

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./Login.css"
 import { Link } from "react-router-dom";
 
-import { withAuth } from "./../lib/AuthProvider"
+// import { withAuth } from "./../lib/AuthProvider"
 
-class Login extends Component {
+
+
+export default class UserEdit extends Component {
   state = { email: "", password: "" };
 
   handleFormSubmit = event => {
@@ -75,5 +77,3 @@ class Login extends Component {
     );
   }
 }
-
-export default withAuth(Login);
