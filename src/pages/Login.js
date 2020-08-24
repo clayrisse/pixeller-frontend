@@ -2,13 +2,26 @@ import React, { Component } from "react";
 import "./Login.css"
 import { Link } from "react-router-dom";
 
+import { withAuth } from "./../lib/AuthProvider"
+
 class Login extends Component {
   state = { email: "", password: "" };
 
   handleFormSubmit = event => {
     event.preventDefault();
     const { email, password } = this.state;
-    console.log('Login -> form submit', { email, password });
+
+    this.props.login( {email, password})
+    .then( () => {
+        // handle success
+        this.setState({ email: "", password: "" })
+        
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+
   };
 
   handleChange = event => {
@@ -77,4 +90,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withAuth(Login);

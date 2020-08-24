@@ -1,13 +1,32 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import { withAuth } from "./../lib/AuthProvider"
+
+
+
 class Signup extends Component {
-  state = { email: "", password: "" };
+  state = { username: "", email: "", password: "" };
+  
 
   handleFormSubmit = event => {
     event.preventDefault();
     const { username, email, password } = this.state;
-    console.log('Signup -> form submit', { username, email, password });
+    
+    // // axios
+    // .post('http://localhost:4000/auth/signup', {username, email, password })
+
+    this.props.signup( {username, email, password})
+    .then( () => {
+        // handle success
+        this.setState({ username: "", email: "", password: "" })
+        
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+
   };
 
   handleChange = event => {
@@ -16,14 +35,15 @@ class Signup extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, username } = this.state;
+
     return (
       <div id="formedit" className="bigform form">
               
     
         <header className="">
             <img id="logoform" src="images/logo-ironclub.png" />
-            <h1 className="titleform">Sing Up</h1>
+            <h1 className="titleform">Sign Up</h1>
         </header>
 
         {/* {{#if errorMessage}}
@@ -32,18 +52,18 @@ class Signup extends Component {
         </p>
         {{/if}} */}
 
-        <form  onSubmit={this.handleFormSubmit} action="/signup" method="POST" enctype="multipart/form-data">
+        <form  onSubmit={this.handleFormSubmit}>
             
             <div className="blockform">
 
-                <div className="lineform">
+                {/* <div className="lineform">
                     <div className="labelform">                
                         <label for=''>Profile picture</label>
                     </div>
                     <div className="inputform">             
                         <input type="file" name="profilepic" id="profilepic-input"/>
                     </div>
-                </div>
+                </div> */}
 
                 {/* <div className="lineform">
                     <div className="labelform">            
@@ -53,6 +73,16 @@ class Signup extends Component {
                         <input value={username} onChange={this.handleChange} type="text" name="name" id="name-input" placeholder="e.g., Diana Prince" required />
                     </div>
                 </div> */}
+
+                <div className="lineform">
+                    <div className="labelform">            
+                        <label for="username-input"> Username </label>
+                    </div>
+                    <div className="inputform">             
+                        <input value={username} onChange={this.handleChange} type="text" name="username" id="username-input" placeholder="e.g., Pepito" required />
+                    </div>
+                </div>
+                
 
                 <div className="lineform">
                     <div className="labelform">            
@@ -89,4 +119,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withAuth(Signup);

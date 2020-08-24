@@ -1,5 +1,5 @@
 .logoutxt{
-    color: #2d354c;
+    color: #313b5a;
     font-size: 18px;
     font-weight: 500;
     line-height: 18px;
@@ -23,9 +23,7 @@
     overflow: hidden;
     left: 0px;
   }
-  
-  
-  
+    
   .xnavbar-bottom ul {
     /*float: right; recordar quitar y 
     usar bootstrap*/

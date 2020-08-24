@@ -77,8 +77,17 @@ class Navbar extends Component {
                       <div className="xnavbar-texticon">
                         <Link className="xnavbar-icontitle" to="/profile">
                           <img className="xnavbar-icon" alt="icon" src="/icons/icon-user.png"/>
-                          <p className="xnavbar-title" >User</p>
+                          <p className="xnavbar-title">User</p>
                         </Link>
+                      </div>
+                    </li>
+                    
+                    <li className="xnav-item">
+                      <div className="xnavbar-texticon">
+                        
+                          <p className="xnavbar-title">{user.username}</p>
+                          <button className="xnavbar-title" onClick={logout}>Logout</button>
+                        
                       </div>
                     </li>
                     </>
@@ -92,7 +101,19 @@ class Navbar extends Component {
                         </Link>
                       </div>
                     </li>
+
+                    {/* <li className="xnav-item">
+                      <div className="xnavbar-texticon">
+                        <Link className="xnavbar-icontitle" to="/profile">
+                          <p className="xnavbar-title">{user.username}</p>
+                          <button className="xnavbar-title" onClick={logout}>Logout</button>
+                        </Link>
+                      </div>
+                    </li> */}
+                    
                     </>
+
+                    
                   )}
 
 
