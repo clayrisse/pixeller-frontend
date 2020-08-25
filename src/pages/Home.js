@@ -14,7 +14,7 @@ export default class Home extends Component {
 
 
   getAllPicsObj = () => {
-    axios.get(process.env.REACT_APP_API_URI/pic/list')
+    axios.get('http://localhost:4000/pic/list')
       .then((response) => {
         this.setState( { allThePicsfromDB: response.data, allThePicsShown: response.data } ) // con axios los datos de respuesta siempre van a ser devueltos dentro de `response.data`
       })
@@ -25,7 +25,7 @@ export default class Home extends Component {
     this.getAllPicsObj()
   }
   
-//boorrar esto
+
 
   render() {
     return (

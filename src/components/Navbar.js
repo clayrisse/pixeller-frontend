@@ -75,7 +75,7 @@ class Navbar extends Component {
                     <>
                     <li className="xnav-item">
                       <div className="xnavbar-texticon">
-                        <Link className="xnavbar-icontitle" to="/profile">
+                        <Link className="xnavbar-icontitle" to="/user/profile">
                           <img className="xnavbar-icon" alt="icon" src="/icons/icon-user.png"/>
                           <p className="xnavbar-title">User</p>
                         </Link>
