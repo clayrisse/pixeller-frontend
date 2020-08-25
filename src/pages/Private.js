@@ -13,7 +13,7 @@ class Private extends Component {
 
 
 getUserInfoObj = () => {
-  axios.get('http://localhost:4000/user', {withCredentials: true})
+  axios.get(process.env.REACT_APP_API_URI/user, {withCredentials: true})
     .then((response) => {
       this.setState( { userSignedUpInfo: response.data } ) // con axios los datos de respuesta siempre van a ser devueltos dentro de `response.data`
     })
