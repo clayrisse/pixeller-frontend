@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
 
 
   getPicsInfo = () => {
-    axios.get('http://localhost:4000/pic/list')
+    axios.get(`${process.env.REACT_APP_API_URI}/pic/list`)
       .then((response) => {
         this.setState( { allPics: response.data, allPicksShown:  response.data } ) // con axios los datos de respuesta siempre van a ser devueltos dentro de `response.data`
       })
@@ -19,8 +19,6 @@ class SearchBar extends React.Component {
   
   filterPixeller = (searchString) => {
     const lowerSearchString = searchString.toLowerCase();
-    // filtrar los paises utilizando el searchString
-    // el array de los paises - this.state.countries
     const allPicsCopy = [...this.state.allPics];
     const filteredPixeller = allPicsCopy.filter( (picsObj) => {
       const picTitle = picsObj.title.toLowerCase();
@@ -39,9 +37,6 @@ class SearchBar extends React.Component {
     this.setState({ titleToShow: filteredPixeller })
     // cuando lo tenemos listo, hay que pasar este metodo al SearchBar como un prop
   }
-
-
-
 
   handleChange = (e) => {
     const updatedText = e.target.value;

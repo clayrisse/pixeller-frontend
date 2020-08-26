@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+// import axios from "axios";
 import { withAuth } from "./../lib/AuthProvider"
 
 
@@ -13,8 +13,6 @@ class Signup extends Component {
     event.preventDefault();
     const { username, email, password } = this.state;
     
-    // // axios
-    // .post('http://localhost:4000/auth/signup', {username, email, password })
 
     this.props.signup( {username, email, password})
     .then( () => {
@@ -33,6 +31,9 @@ class Signup extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+
+
+  
 
   render() {
     const { email, password, username } = this.state;
@@ -58,7 +59,7 @@ class Signup extends Component {
 
                 <div className="lineform">
                     <div className="labelform">            
-                        <label for="username-input"> Username </label>
+                        <label htmlFor="username-input"> Username </label>
                     </div>
                     <div className="inputform">             
                         <input value={username} onChange={this.handleChange} type="text" name="username" id="username-input" placeholder="e.g., Pepito" required />
@@ -67,7 +68,7 @@ class Signup extends Component {
                 
                 <div className="lineform">
                     <div className="labelform">            
-                        <label for="email-input"> Email </label>
+                        <label htmlFor="email-input"> Email </label>
                     </div>
                     <div className="inputform">             
                         <input value={email} onChange={this.handleChange} type="email" name="email" id="email-input" placeholder="e.g., diana@themyscira.agency" required />
@@ -76,17 +77,18 @@ class Signup extends Component {
 
                 <div className="lineform">
                     <div className="labelform">   
-                        <label for="password-input"> Password </label>
+                        <label htmlFor="password-input"> Password </label>
                     </div>
                     <div className="inputform">             
                         <input value={password} onChange={this.handleChange} type="password" name="password" id="password-input" placeholder="e.g., ••••••••••••" required />
                     </div>
                 </div>
+                
 
 
-                <div className="lineform">
+                {/* <div className="lineform">
                     <div className="labelform">   
-                        <label for="password-input"> Want to be a selling pgotographer?</label>
+                        <label htmlFor="password-input"> Want to be a selling pgotographer?</label>
                     </div>
                     <div className="inputform">             
                         <select id="seller-input" name="seller" onChange={this.handleChange}>
@@ -94,7 +96,7 @@ class Signup extends Component {
                             <option value="false" selected>NO</option>
                         </select>                    
                     </div>
-                </div>
+                </div> */}
 
                 <button className="btnform"> Create New Account </button>
 
