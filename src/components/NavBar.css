@@ -16,7 +16,7 @@
     
   }
   .xnavbar-bottom {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(241, 241, 241, 0.884);
     position: fixed; /*cambiar en res 500 y 1000. y ponerla hidden en 1000*/
     width: 100%;
     bottom: 0;

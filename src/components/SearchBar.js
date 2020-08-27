@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
 
 
   getPicsInfo = () => {
-    axios.get(`${process.env.REACT_APP_API_URI}/pic/list`)
+    axios.get(`${process.env.REACT_APP_API_URL}/pic/list`)
       .then((response) => {
         this.setState( { allPics: response.data, allPicksShown:  response.data } ) // con axios los datos de respuesta siempre van a ser devueltos dentro de `response.data`
       })

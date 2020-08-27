@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import { Link } from "react-router-dom";
-import SearchBar from '../components/SearchBar';
+// import SearchBar from '../components/SearchBar';
 
 export default class Home extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export default class Home extends Component {
     }
 
   getAllPicsObj = () => {
-    axios.get(`${process.env.REACT_APP_API_URI}/pic/list`)
+    axios.get(`${process.env.REACT_APP_API_URL}/pic/list`)
       .then((response) => {
         this.setState( { allThePicsfromDB: response.data, allThePicsShown: response.data } ) // con axios los datos de respuesta siempre van a ser devueltos dentro de `response.data`
       })
@@ -28,11 +28,18 @@ export default class Home extends Component {
   render() {
     return (
       <div>
+        <img id="logohome" alt="" src="./../../images/logo-pixeller.png" />
         {/* <SearchBar /> */}
 
         {this.state.allThePicsShown.map((aPic, index) => {
           return (
-              <Link to={`/${aPic._id}`} className="" key={aPic._id}><p>{aPic.title} {aPic.artist}</p></Link>
+           
+              <Link to={`/${aPic._id}`} className="" key={aPic._id}>
+              <br/>
+              <img src={aPic.picture} width="360px"  alt=""  />
+              <p>{aPic.title} {aPic.artist}</p>
+              <br/>
+              </Link>
           )
         })}
 

@@ -13,7 +13,7 @@ export default class PicDetail extends Component {
     }
 
     getPicObj = () => {
-    axios.get(`${process.env.REACT_APP_API_URI}/pic/detail`, {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/pic/detail`, {withCredentials: true})
         .then((response) => {
         this.setState( { pickedPicId: response.data } ) 
         })

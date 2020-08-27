@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { withAuth } from "./../lib/AuthProvider"
 
@@ -23,22 +23,9 @@ class PicEdit  extends Component {
       const { picture, title, formats, tags, description, price, maxPrints, artistInfo, date } = this.state;
         
         axios
-        .put(`${process.env.REACT_APP_API_URI}/pic/create`, {picture, title, formats, tags, description, price, maxPrints, artistInfo, date}, {withCredentials: true})
-        .then( () => {
+        .put(`${process.env.REACT_APP_API_URL}/pic/${this.props.match.params.editPicId}`, {picture, title, formats, tags, description, price, maxPrints, artistInfo, date}, {withCredentials: true})
+        .then( () => {this.props.history.push("/user/profile") })
             // handle success
-            this.setState({ 
-                picture: "", 
-                title: "", 
-                formats: "2x3", 
-                tags: "", 
-                description: "", 
-                price: "", 
-                maxPrints: "",
-                artistInfo: ""
-              
-            })
-          
-      })
       .catch(function (error) {
           // handle error
           console.log(error);
@@ -51,29 +38,41 @@ class PicEdit  extends Component {
       this.setState({ [name]: value });
     };
   
-    // fileOnchange = (event) => {
-    //     //Consigue el archivo del form
-    //     const file = event.target.files[0];
-    //     //para enviar el objeto y añadir la imagen
-    //     const uploadData = new FormData();
-    //     uploadData.append("photo", file);
-    //     axios
-    //       .post(`${process.env.REACT_APP_API_URI}/pic/upload`, uploadData, {
-    //         withCredentials: true,
-    //       })
-    //       .then((response) => {
-    //         this.setState({
-    //           image: response.data.secure_url,
-    //           disable: false,
-    //         });
-    //       })
-    //       .catch((error) => console.log(error));
-    //   };
+    fileOnchange = (event) => {
+        //Consigue el archivo del form
+        const file = event.target.files[0];
+        //para enviar el objeto y añadir la imagen
+        const uploadData = new FormData();
+        uploadData.append("photo", file);
+        axios
+          .post(`${process.env.REACT_APP_API_URL}/pic/upload`, uploadData, {
+            withCredentials: true,
+          })
+          .then((response) => {
+            this.setState({
+              picture: response.data.secure_url,
+              disable: false,
+
+            });
+          })
+          .catch((error) => console.log(error));
+      };
     
+      componentDidMount() {
+        const picId = this.props.match.params.editPicId
+        axios
+        .get(`${process.env.REACT_APP_API_URL}/pic/${picId}`, {withCredentials: true})
+        .then((response) => {
+            this.setState({...response.data})
+          })
+          .catch((error) => console.log(error));
 
-    render() {
+      }
 
-        const {picture, title, formats, tags, description, artistInfo, price, maxPrints} = this.state;
+
+    render() {  //picture
+
+        const { title, formats, tags, description, artistInfo, price, maxPrints} = this.state;
 
         return (
                 
@@ -81,7 +80,7 @@ class PicEdit  extends Component {
     
                 <header className="">
                     <img id="logoform" alt="" src="./../../images/logo-pixeller.png" />
-                    <h1 className="titleform">Create a Picture</h1>
+                    <h1 className="titleform">Edit a Picture</h1>
                 </header>
 
                 {/* {{#if errorMessage}}
@@ -95,12 +94,12 @@ class PicEdit  extends Component {
                     <div className="blockform">
 
 
-                        <div className="lineform">
+                    <div className="lineform">
                             <div className="labelform">            
                                 <label for="picture-input"> Picture </label>
                             </div>
-                            <div className="inputform">             
-                                <input value={picture} onChange={this.fileOnchange} type="file"  id="picture-input" placeholder="e.g., Pepito" />
+                            <div className="inputform"> <img src={this.state.picture}   alt=""  />       
+                                <input onChange={this.fileOnchange} type="file"  id="picture-input" placeholder="e.g., Pepito" />
                             </div>
                         </div>
                         
@@ -173,7 +172,7 @@ class PicEdit  extends Component {
 
 
 
-                        <button className="btnform" type="submit">Create picture</button>
+                        <button className="btnform" type="submit">Save picture</button>
 
 
                     </div>

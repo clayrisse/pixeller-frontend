@@ -10,9 +10,9 @@ import Login from "./pages/Login";
 import Private from "./pages/Private";
 import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
-import { Artist } from "./pages/Artist";
+// import { Artist } from "./pages/Artist";
 // import { PrintDetail } from "./pages/PrintDetail";
-import { Checkout } from "./pages/Checkout";
+// import { Checkout } from "./pages/Checkout";
 import PicCreate  from "./pages/PicCreate";
 import PicDetail from "./pages/PicDetail";
 import PicEdit from "./pages/PicEdit";
@@ -47,7 +47,7 @@ class App extends Component {
             <PrivateRoute exact path='/user/profile' component={Private} />
             <PrivateRoute exact path='/user/edit' component={UserEdit} />
             <PrivateRoute exact path='/pic/create' component={PicCreate} />
-            <PrivateRoute exact path='/pic/edit' component={PicEdit} />
+            <PrivateRoute exact path='/pic/edit/:editPicId' component={PicEdit} />
           </Switch>
         </div>
       </AuthProvider>

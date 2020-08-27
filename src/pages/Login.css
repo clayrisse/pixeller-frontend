@@ -1,3 +1,8 @@
+#logohome{
+  width: 400px;
+  margin: -10px auto  0px;
+}
+
 #logoform{
     width: 200px;
   }
@@ -17,7 +22,7 @@
     box-sizing: border-box;
     box-shadow: 2px 4px 12px rgba(0, 0, 0, .09);
     
-    margin: -12px auto 0px;
+    margin: 20px auto 90px;
     max-width: 355px;
     padding: 24px 30px 32px;
   
@@ -81,3 +86,13 @@
     text-align: center;
     width: 100%;
   }
+
+  p {
+    margin: 20px 2px 0px;
+    font-size: 14px;
+
+}
+.btneditform {
+  color: #fff;
+  text-decoration: none;
+}

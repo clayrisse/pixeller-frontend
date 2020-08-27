@@ -53,7 +53,7 @@ class Navbar extends Component {
                         <div className="xnavbar-texticon">
                           <Link className="xnavbar-icontitle" to="/user/profile">
                             <img className="xnavbar-icon" alt="icon" src="/icons/icon-user.png"/>
-                            <p className="xnavbar-title">User</p>
+                            <p className="xnavbar-title">{user.username}</p>
                           </Link>
                         </div>
                       </li>
@@ -61,7 +61,8 @@ class Navbar extends Component {
                       <li className="xnav-item">
                         <div className="xnavbar-texticon">
                           
-                            <p className="xnavbar-title">{user.username}</p>
+                            {/* <p className="xnavbar-title">{user.username}</p> */}
+                            <img className="xnavbar-icon" alt="icon" src="/icons/icon-logout.png"/>
                             <button className="xnavbar-title" onClick={logout}>Logout</button>
                           
                         </div>

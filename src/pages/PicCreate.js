@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { withAuth } from "./../lib/AuthProvider"
 
@@ -23,22 +23,11 @@ class PicCreate extends Component {
       const { picture, title, formats, tags, description, price, maxPrints, artistInfo, date } = this.state;
         
         axios
-        .post(`${process.env.REACT_APP_API_URI}/pic/create`, {picture, title, formats, tags, description, price, maxPrints, artistInfo, date}, {withCredentials: true})
-        .then( () => {
-            // handle success
-            this.setState({ 
-                picture: "", 
-                title: "", 
-                formats: "2x3", 
-                tags: "", 
-                description: "", 
-                price: "", 
-                maxPrints: "",
-                artistInfo: ""
-              
-            })
+        .post(`${process.env.REACT_APP_API_URL}/pic/create`, {picture, title, formats, tags, description, price, maxPrints, artistInfo, date}, {withCredentials: true})
+        .then( () => {this.props.history.push("/") })
+
           
-      })
+  
       .catch(function (error) {
           // handle error
           console.log(error);
@@ -58,22 +47,23 @@ class PicCreate extends Component {
         const uploadData = new FormData();
         uploadData.append("photo", file);
         axios
-          .post(`${process.env.REACT_APP_API_URI}/pic/upload`, uploadData, {
+          .post(`${process.env.REACT_APP_API_URL}/pic/upload`, uploadData, {
             withCredentials: true,
           })
           .then((response) => {
             this.setState({
-              image: response.data.secure_url,
+              picture: response.data.secure_url,
               disable: false,
+
             });
           })
           .catch((error) => console.log(error));
       };
     
 
-    render() {
+    render() { //picture,
 
-        const {picture, title, formats, tags, description, artistInfo, price, maxPrints} = this.state;
+        const { title, formats, tags, description, artistInfo, price, maxPrints} = this.state;
 
         return (
                 
@@ -84,12 +74,6 @@ class PicCreate extends Component {
                     <h1 className="titleform">Create a Picture</h1>
                 </header>
 
-                {/* {{#if errorMessage}}
-                <p className="error-message">
-                    {{ errorMessage }}
-                </p>
-                {{/if}} */}
-
                 <form  onSubmit={this.handleFormSubmit}>
                     
                     <div className="blockform">
@@ -97,16 +81,17 @@ class PicCreate extends Component {
 
                         <div className="lineform">
                             <div className="labelform">            
-                                <label for="picture-input"> Picture </label>
+                                <label htmlFor="picture-input"> Picture </label>
                             </div>
-                            <div className="inputform">             
-                                <input value={picture} onChange={this.fileOnchange} type="file"  id="picture-input" placeholder="e.g., Pepito" />
+                            <div className="inputform"> 
+                                <img src={this.state.picture} width="250px"  alt=""  />       
+                                <input onChange={this.fileOnchange} type="file"  id="picture-input" placeholder="e.g., Pepito" />
                             </div>
                         </div>
                         
                         <div className="lineform">
                             <div className="labelform">            
-                                <label for="artistInfo-input"> Artist Name </label>
+                                <label htmlFor="artistInfo-input"> Artist Name </label>
                             </div>
                             <div className="inputform">             
                                 <input value={artistInfo} onChange={this.handleChange} type="text" name="artistInfo" id="artistInfo-input" placeholder="e.g., diana@themyscira.agency"/>
@@ -115,7 +100,7 @@ class PicCreate extends Component {
 
                         <div className="lineform">
                             <div className="labelform">            
-                                <label for="title-input"> Title </label>
+                                <label htmlFor="title-input"> Title </label>
                             </div>
                             <div className="inputform">             
                                 <input value={title} onChange={this.handleChange} type="text" name="title" id="title-input" placeholder="e.g., diana@themyscira.agency" required />
@@ -124,7 +109,7 @@ class PicCreate extends Component {
 
                          <div className="lineform">
                             <div className="labelform">   
-                                <label for="formats-input"> Formats </label>
+                                <label htmlFor="formats-input"> Formats </label>
                             </div>
                             <div className="inputform">             
                                 <select value={formats} onChange={this.handleChange} id="formats-input" name="formats" >
@@ -137,7 +122,7 @@ class PicCreate extends Component {
 
                         <div className="lineform">
                             <div className="labelform">   
-                                <label for="tags-input"> Tags </label>
+                                <label htmlFor="tags-input"> Tags </label>
                             </div>
                             <div className="inputform">             
                                 <input value={tags} onChange={this.handleChange} type="text" name="tags" id="tags-input" placeholder="e.g., ••••••••••••" required />
@@ -146,7 +131,7 @@ class PicCreate extends Component {
 
                         <div className="lineform">
                             <div className="labelform">   
-                                <label for="description-input"> Description </label>
+                                <label htmlFor="description-input"> Description </label>
                             </div>
                             <div className="inputform">             
                                 <input value={description} onChange={this.handleChange} type="text" name="description" id="description-input" placeholder="e.g., ••••••••••••" required />
@@ -155,7 +140,7 @@ class PicCreate extends Component {
 
                         <div className="lineform">
                             <div className="labelform">   
-                                <label for="price-input"> Price </label>
+                                <label htmlFor="price-input"> Price </label>
                             </div>
                             <div className="inputform">             
                                 <input value={price} onChange={this.handleChange} type="number" name="price" id="price-input" placeholder="e.g., ••••••••••••" required />
@@ -164,7 +149,7 @@ class PicCreate extends Component {
 
                         <div className="lineform">
                             <div className="labelform">   
-                                <label for="maxPrints-input"> Number of Prints </label>
+                                <label htmlFor="maxPrints-input"> Number of Prints </label>
                             </div>
                             <div className="inputform">             
                                 <input value={maxPrints} onChange={this.handleChange} type="number" name="maxPrints" id="maxPrints-input" placeholder="e.g., ••••••••••••" required />
@@ -173,7 +158,7 @@ class PicCreate extends Component {
 
 
 
-                        <button className="btnform" type="submit">Create picture</button>
+                        <button className="btnform" type="submit" disabled={this.state.disable}>Create picture</button>
 
 
                     </div>

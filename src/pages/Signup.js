@@ -71,7 +71,7 @@ class Signup extends Component {
                         <label htmlFor="email-input"> Email </label>
                     </div>
                     <div className="inputform">             
-                        <input value={email} onChange={this.handleChange} type="email" name="email" id="email-input" placeholder="e.g., diana@themyscira.agency" required />
+                        <input value={email} onChange={this.handleChange} type="email" name="email" id="email-input" placeholder="e.g., pepito@gmail.com" required />
                     </div>
                 </div>
 

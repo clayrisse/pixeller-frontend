@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./Login.css"
 import axios from "axios";
 import { withAuth } from "../lib/AuthProvider";
-// import { Link } from "react-router-dom";
+import "./list.css"
+import { Link } from "react-router-dom";
 
 
 class UserEdit extends Component {
@@ -22,7 +23,7 @@ class UserEdit extends Component {
     };
 
     getUserInfoObj = () => {
-        axios.get(`${process.env.REACT_APP_API_URI}/user`, {withCredentials: true})
+        axios.get(`${process.env.REACT_APP_API_URL}/user`, {withCredentials: true})
           .then((response) => {
             this.setState( {...response.data } )
           })
@@ -47,10 +48,11 @@ class UserEdit extends Component {
 
         const user = {email, password, username, seller, lastName, address, phoneNum, sellerAvatar, sellerArtistName, sellerInfo, sellerContact }
            
-        axios.put(`${process.env.REACT_APP_API_URI}/user`, user, {withCredentials: true})
+        axios.put(`${process.env.REACT_APP_API_URL}/user`, user, {withCredentials: true})
         .then( () => {
             this.getUserInfoObj()
-            this.props.me()            
+            this.props.me()  
+            this.props.history.push("/user/profile");          
         })
         .catch(function (error) {
             console.log(error);
@@ -62,9 +64,10 @@ class UserEdit extends Component {
     handleDelete = () => {
         
         axios //que pacha aca
-        .delete(`${process.env.REACT_APP_API_URI}/user`, {withCredentials: true})
+        .delete(`${process.env.REACT_APP_API_URL}/user`, {withCredentials: true})
         .then (() => {
             this.props.destroyUser();
+            this.props.history.push("/");
         })
         .catch (err => console.log(err))
     }
@@ -169,7 +172,7 @@ class UserEdit extends Component {
                           <input value={phoneNum} onChange={this.handleChange} type="number" name="phoneNum" id="phonenum-input" placeholder={this.props.phoneNum} />
                       </div>
                   </div>
-
+{/* 
                   <div className="lineform">
                       <div className="labelform">
                           <label htmlFor="sellerAvatar-input"> Profile picture </label>
@@ -177,7 +180,7 @@ class UserEdit extends Component {
                       <div className="inputform">
                           <input value={sellerAvatar} onChange={this.handleChange} type="" name="sellerAvatar" id="sellerAvatar-input" placeholder={this.props.sellerAvatar} />
                       </div>
-                  </div>
+                  </div> */}
 
                   <div className="lineform">
                       <div className="labelform">
@@ -208,9 +211,11 @@ class UserEdit extends Component {
 
                     </>
                   ) : null }
-
+                
+                 
                  <button className="btnform" type="submit">Save Changes</button>
-                 <button className="btnform" onClick={() => this.handleDelete()}>Delete</button> 
+                 <button className="btnform" onClick={() => this.handleDelete()}>Delete User</button> 
+                 
               </div>
             </form>
 

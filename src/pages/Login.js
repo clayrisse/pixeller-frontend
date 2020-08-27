@@ -48,7 +48,7 @@ class Login extends Component {
 
                   <div className="lineform">
                       <div className="labelform">
-                          <label for="email-input"> Email </label>
+                          <label htmlFor="email-input"> Email </label>
                       </div>
                       <div className="inputform">    
                           <input value={email} onChange={this.handleChange} type="email" name="email" id="email-input" placeholder="e.g., xena@warrior.company" />
@@ -57,7 +57,7 @@ class Login extends Component {
 
                   <div className="lineform">
                       <div className="labelform">
-                          <label for="password-input"> Password </label>
+                          <label htmlFor="password-input"> Password </label>
                       </div>
                       <div className="inputform">
                           <input value={password} onChange={this.handleChange} type="password" name="password" id="password-input" placeholder="e.g., ••••••••••••" />
@@ -68,7 +68,7 @@ class Login extends Component {
               </div>
           </form>
 
-          <p>Don't have an account? <Link to="/signup">Create an account.</Link></p>
+          <p>Don't have an account?<Link to="/signup">Create an account.</Link></p>
          
       </div>
     );
