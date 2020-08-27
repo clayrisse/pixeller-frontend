@@ -98,7 +98,7 @@ class PicEdit  extends Component {
                             <div className="labelform">            
                                 <label for="picture-input"> Picture </label>
                             </div>
-                            <div className="inputform"> <img src={this.state.picture}   alt=""  />       
+                            <div className="inputform"> <img src={this.state.picture} width="250px"  alt=""  />       
                                 <input onChange={this.fileOnchange} type="file"  id="picture-input" placeholder="e.g., Pepito" />
                             </div>
                         </div>

@@ -10,7 +10,7 @@ const withAuth = (WrappedComponent) => {
       return (
         <Consumer>
           {/* El componente <Consumer> provee un callback que recibe el "value" con el objeto Providers */}
-          {({ login, signup, user, logout, isLoggedin, me,  destroyUser }) => {
+          {({ login, signup, user, logout, isLoggedin, me,  destroyUser, shoppingCar, addToShoppingCar }) => {
             return (
               <WrappedComponent
                 login={login}
@@ -20,7 +20,8 @@ const withAuth = (WrappedComponent) => {
                 isLoggedin={isLoggedin}
                 me={me}
                 destroyUser={destroyUser}
-
+                shoppingCar={shoppingCar}
+                addToShoppingCar={addToShoppingCar}
                 {...this.props}
               />
             );
@@ -33,7 +34,7 @@ const withAuth = (WrappedComponent) => {
 
 // Provider
 class AuthProvider extends React.Component {
-  state = { isLoggedin: false, user: null, isLoading: true };
+  state = { isLoggedin: false, user: null, isLoading: true, shoppingCar: [] };
 
   componentDidMount() {
     // luego de que se monte el componente, llama a auth.me() que nos devuelve el usuario y setea los valores para loguearlo
@@ -53,6 +54,12 @@ class AuthProvider extends React.Component {
 
   destroyUser = () => {
     this.setState({ isLoggedin: false, user: null, isLoading: false })
+  }
+
+  addToShoppingCar = (sellingPic) => {
+    const shoppingCarCopy = [...this.state.shoppingCar]
+    shoppingCarCopy.push(sellingPic)
+    this.setState({ shoppingCar: shoppingCarCopy })
   }
 
   signup = (user) => {
@@ -84,15 +91,15 @@ class AuthProvider extends React.Component {
 
   render() {
     // destructuramos isLoading, isLoggedin y user de this.state y login, logout y signup de this
-    const { isLoading, isLoggedin, user } = this.state;
-    const { login, logout, signup, me, destroyUser } = this;
+    const { isLoading, isLoggedin, user, shoppingCar } = this.state;
+    const { login, logout, signup, me, destroyUser, addToShoppingCar } = this;
 
     return isLoading ? (
       // si está loading, devuelve un <div> y sino devuelve un componente <Provider> con un objeto con los valores: { isLoggedin, user, login, logout, signup}
       // el objeto pasado en la prop value estará disponible para todos los componentes <Consumer>
       <div>Loading</div>
     ) : (
-      <Provider value={{ isLoggedin, user, login, logout, signup, me, destroyUser }}>
+      <Provider value={{ isLoggedin, user, login, logout, signup, me, destroyUser, shoppingCar, addToShoppingCar }}>
         {this.props.children}
       </Provider>
     ); /*<Provider> "value={}" datos que estarán disponibles para todos los componentes <Consumer> */

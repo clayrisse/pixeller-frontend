@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { withAuth } from "./../lib/AuthProvider"
 
-export default class PicDetail extends Component {
+class PicDetail extends Component {
 
     constructor(props) {
     super(props)
@@ -13,12 +14,18 @@ export default class PicDetail extends Component {
     }
 
     getPicObj = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/pic/detail`, {withCredentials: true})
+        const picId = this.props.match.params.picId
+    // axios.get("http://localhost:5000/pic/" + picId, {withCredentials: true})
+    axios.get(`${process.env.REACT_APP_API_URL}/pic/${picId}`, {withCredentials: true})
         .then((response) => {
         this.setState( { pickedPicId: response.data } ) 
         })
         .catch((err) => console.log(err))
     } 
+    addToCarDot = () => {
+        this.props.addToShoppingCar(this.state.pickedPicId)
+    }
+
 
     componentDidMount() {
     this.getPicObj()
@@ -32,16 +39,18 @@ export default class PicDetail extends Component {
             <p>{this.state.pickedPicId.title}</p> 
             <p>{this.state.pickedPicId.formats}</p>
             <p>{this.state.pickedPicId.tags}</p>
-                {this.state.pickedPicId.price.map((aTag, index) => {
+                {/* {this.state.pickedPicId.price.map((aTag, index) => {
                     return(<p>{`/${aTag}. `}</p>)
-                })}
+                })} */}
             <p>{this.state.pickedPicId.description}</p>
             <p>{`${this.state.pickedPicId.price} $`}</p>
             <p>{this.state.pickedPicId.maxPrints}</p>
-            <Link to={"/user/edit"}> EDIT</Link>
-            <form>
-                <Link to={"/checkout"}> <button className="btnform" type="submit">Add to Car</button></Link>
-            </form>
+            
+            
+            <button className="btnform" onClick={this.addToCarDot} >Add to Car</button>
+            
        </div>
     )}             
 }
+
+export default withAuth(PicDetail)

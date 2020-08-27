@@ -5,7 +5,7 @@ import { withAuth } from "../lib/AuthProvider";
 
 class Navbar extends Component {
   render() {
-    const { user, logout, isLoggedin } = this.props;
+    const { user, logout, isLoggedin, shoppingCar } = this.props;
     return (
       <div>
         <nav className="xnavbar-bottom">
@@ -26,7 +26,8 @@ class Navbar extends Component {
                       <div className="xnavbar-texticon">
                         <Link className="xnavbar-icontitle" to={"/checkout"}>
                           <img className="xnavbar-icon" alt="icon" src="/icons/icon-car.png"/>
-                          <p className="xnavbar-title" >Cheackout</p>
+                          <p className="xnavbar-title" >Car <span style={{background: "red", color:"white", padding: "2px", borderRadius:"50%"}}>{shoppingCar.length}</span></p>
+                           
                         </Link>
                       </div>
                     </li>

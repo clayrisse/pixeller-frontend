@@ -34,7 +34,7 @@ export default class Home extends Component {
         {this.state.allThePicsShown.map((aPic, index) => {
           return (
            
-              <Link to={`/${aPic._id}`} className="" key={aPic._id}>
+              <Link to={`/pic/detail/${aPic._id}`} className="" key={aPic._id}>
               <br/>
               <img src={aPic.picture} width="360px"  alt=""  />
               <p>{aPic.title} {aPic.artist}</p>
