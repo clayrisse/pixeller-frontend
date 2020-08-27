@@ -124,14 +124,7 @@ class UserEdit extends Component {
                       </div>
                   </div>
 
-                  <div className="lineform">
-                      <div className="labelform">
-                          <label htmlFor="password-input"> Password </label>
-                      </div>
-                      <div className="inputform">
-                          <input value={password} onChange={this.handleChange} type="password" name="password" id="password-input" placeholder={this.props.password} />
-                      </div>
-                  </div>
+                
 
                   <div className="lineform">
                     <div className="labelform">   

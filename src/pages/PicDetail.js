@@ -34,21 +34,88 @@ class PicDetail extends Component {
     render() {
     return (
         <div>
-            <h1>Picture Detail</h1>
-            <img src={this.state.pickedPicId.picture} alt="" />
-            <p>{this.state.pickedPicId.title}</p> 
-            <p>{this.state.pickedPicId.formats}</p>
-            <p>{this.state.pickedPicId.tags}</p>
-                {/* {this.state.pickedPicId.price.map((aTag, index) => {
-                    return(<p>{`/${aTag}. `}</p>)
-                })} */}
-            <p>{this.state.pickedPicId.description}</p>
-            <p>{`${this.state.pickedPicId.price} $`}</p>
-            <p>{this.state.pickedPicId.maxPrints}</p>
+         <img alt="" width="300px "src="./../../images/logo-pixeller.png" />
+        
+            {/* <h1>Picture Detail</h1> */}
+            <br/><br/>
+            <img src={this.state.pickedPicId.picture} width="500xp" alt="" />
+            <br/>
+            <div id="formedit" className="bigform form">
+            <div className="blockform">
+
+
+                <div className="lineform">
+                    <div className="labelform">            
+                        <label htmlFor="username-input"> Work Title </label>
+                    </div>
+                    <div className="inputform">             
+                    <p>{this.state.pickedPicId.title}</p> 
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div className="lineform">
+                    <div className="labelform">            
+                        <label htmlFor="username-input"> Format </label>
+                    </div>
+                    <div className="inputform">             
+                    <p>{this.state.pickedPicId.formats}</p> 
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div className="lineform">
+                    <div className="labelform">            
+                        <label htmlFor="username-input"> Tags </label>
+                    </div>
+                    <div className="inputform">             
+                    <p>{this.state.pickedPicId.tags}</p> 
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div className="lineform">
+                    <div className="labelform">            
+                        <label htmlFor="username-input"> Description </label>
+                    </div>
+                    <div className="inputform">             
+                    <p>{this.state.pickedPicId.description}</p> 
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div className="lineform">
+                    <div className="labelform">            
+                        <label htmlFor="username-input"> Price </label>
+                    </div>
+                    <div className="inputform">             
+                    <p>{this.state.pickedPicId.price}$</p> 
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div className="lineform">
+                    <div className="labelform">            
+                        <label htmlFor="username-input"> Number of Prints </label>
+                    </div>
+                    <div className="inputform">             
+                    <p>{this.state.pickedPicId.maxPrints}</p> 
+                    </div>
+                </div>
+
+                
+
             
+                <hr/>
             
             <button className="btnform" onClick={this.addToCarDot} >Add to Car</button>
-            
+            </div>
+            </div>
        </div>
     )}             
 }

@@ -153,12 +153,14 @@ class Private extends Component {
                       </div>
                   </div>
                   }
+                  <Link  to={"/user/edit"} ><button className="btneditform">EDIT</button> </Link>  
 
                   <br/><br/><br/><br/><br/>
                   <header className="">                
                     <h1 className="titleform">My Selling Pictures</h1>
                   </header>
                   <br/>
+
                    </> 
                   ) : (
                   <>
@@ -168,14 +170,8 @@ class Private extends Component {
                   )}
                   
               </div>
-          
-        
-                      
+                           
               
-
-
-
-            
             { this.state.userSignedUpInfo.sellingPic &&
               this.state.userSignedUpInfo.sellingPic.map((eachPic, index) => {
           return (

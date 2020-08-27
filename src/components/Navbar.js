@@ -15,7 +15,7 @@ class Navbar extends Component {
                       <div className="xnavbar-texticon">
                         <Link className="xnavbar-icontitle" to={"/"}>
                           <img className="xnavbar-icon" alt="icon" src="/icons/icon-home.png"/>
-                          <p className="xnavbar-title" >Home</p>
+                          <p className="xnavbar-title" ><button>Home</button></p>
                         </Link>
                       </div>
                     </li>
@@ -26,7 +26,7 @@ class Navbar extends Component {
                       <div className="xnavbar-texticon">
                         <Link className="xnavbar-icontitle" to={"/checkout"}>
                           <img className="xnavbar-icon" alt="icon" src="/icons/icon-car.png"/>
-                          <p className="xnavbar-title" >Car <span style={{background: "red", color:"white", padding: "2px", borderRadius:"50%"}}>{shoppingCar.length}</span></p>
+                          <p className="xnavbar-title" ><button>Car</button><span style={{background: "grey", color:"white", padding: "2px", borderRadius:"50%"}}>{shoppingCar.length}</span></p>
                            
                         </Link>
                       </div>
@@ -43,7 +43,7 @@ class Navbar extends Component {
                         <div className="xnavbar-texticon">
                           <Link className="xnavbar-icontitle" to={"/pic/create"}>
                             <img className="xnavbar-icon" alt="icon" src="/icons/icon-addpic.png"/>
-                            <p className="xnavbar-title" >Add Print</p>
+                            <p className="xnavbar-title" ><button>Add Print</button></p>
                           </Link>
                         </div>
                       </li>
@@ -54,7 +54,7 @@ class Navbar extends Component {
                         <div className="xnavbar-texticon">
                           <Link className="xnavbar-icontitle" to="/user/profile">
                             <img className="xnavbar-icon" alt="icon" src="/icons/icon-user.png"/>
-                            <p className="xnavbar-title">{user.username}</p>
+                            <p className="xnavbar-title"><button>{user.username}</button></p>
                           </Link>
                         </div>
                       </li>
@@ -84,7 +84,7 @@ class Navbar extends Component {
                         <div className="xnavbar-texticon">
                           <Link className="xnavbar-icontitle" to="/login">
                             <img className="xnavbar-icon" alt="icon" src="/icons/icon-user.png"/>
-                            <p className="xnavbar-title" >Log In</p>
+                            <p className="xnavbar-title" ><button>Log In</button></p>
                           </Link>
                         </div>
                       </li>  
